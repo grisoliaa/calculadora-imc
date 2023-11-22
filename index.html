@@ -1,0 +1,92 @@
+<html>
+
+    <head>
+        <link href="style.css" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        
+        <h1>
+            Calculadora IMC
+        </h1>
+
+        <form onsubmit="calcularIMC(event)">
+
+            <div class="form-control">
+
+                <label>
+                    Peso (kg):
+                </label>
+                <input type="number" required id="peso"/>
+
+
+            </div>
+
+            <div class="form-control">
+
+                <label>
+                    Altura (m):
+                </label>
+                <input type="number" required id="altura" step="0.01"/>
+
+            </div>
+
+            <button>
+                Calcular
+            </button>
+
+        </form>
+
+        <div id="result"> </div>
+
+    </body>
+
+    <script>
+
+        function calcularIMC (event) {
+            event.preventDefault()
+
+            var peso = document.getElementById("peso").value
+            console.log(peso)
+
+            var altura = document.getElementById("altura").value
+            console.log(altura)
+
+            var IMC = peso / (altura * altura)
+
+            var classificacao = classificarIMC(IMC)
+            var resultado = document.getElementById("result")
+            resultado.textContent = classificacao
+        }
+
+        function classificarIMC (IMC) {
+
+            if (IMC < 18.5) {
+                return "Abaixo do peso"
+            } 
+
+            if (IMC >= 18.5 && IMC < 24.9) {
+                return "Peso normal"
+            }
+
+            if (IMC >= 25 && IMC < 29.9) {
+                return "Sobrepeso"
+            }
+
+            if (IMC >= 30 && IMC < 34.9) {
+                return "Obesidade Grau I"
+            }
+
+            if (IMC >= 35 && IMC < 39.9) {
+                return "Obesidade Grau II"
+            }
+
+            return "Obesidade Grau III"
+        }
+
+    </script>
+
+</html>
